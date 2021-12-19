@@ -1,6 +1,6 @@
 // useEffect: HTTP requests
-// 💯 create an ErrorBoundary component
-// http://localhost:3000/isolated/final/06.extra-4.js
+// 💯 re-mount the error boundary
+// http://localhost:3000/isolated/final/06.extra-5.js
 
 import * as React from 'react'
 import {
@@ -83,7 +83,7 @@ function App() {
       <PokemonForm pokemonName={pokemonName} onSubmit={handleSubmit} />
       <hr />
       <div className="pokemon-info">
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <ErrorBoundary key={pokemonName} FallbackComponent={ErrorFallback}>
           <PokemonInfo pokemonName={pokemonName} />
         </ErrorBoundary>
       </div>
