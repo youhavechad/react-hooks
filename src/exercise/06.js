@@ -1,5 +1,6 @@
 // useEffect: HTTP requests
-// http://localhost:3000/isolated/final/06.js
+// 💯 store the state in an object
+// http://localhost:3000/isolated/final/06.extra-3.js
 
 import * as React from 'react'
 import {
@@ -10,7 +11,7 @@ import {
 } from '../pokemon'
 
 function PokemonInfo({pokemonName}) {
-  const [status, setStatus] = React.useState({
+  const [state, setState] = React.useState({
     status: 'idle',
     pokemon: null,
     error: null,
@@ -21,13 +22,13 @@ function PokemonInfo({pokemonName}) {
     if (!pokemonName) {
       return
     }
-    setStatus({status: 'pending'})
+    setState({status: 'pending'})
     fetchPokemon(pokemonName).then(
       pokemon => {
-        setStatus({status: 'resolved', pokemon})
+        setState({status: 'resolved', pokemon})
       },
       error => {
-        setStatus({status: 'rejected', error})
+        setState({status: 'rejected', error})
       },
     )
   }, [pokemonName])
@@ -38,7 +39,7 @@ function PokemonInfo({pokemonName}) {
     return <PokemonInfoFallback name={pokemonName} />
   } else if (status === 'rejected') {
     return (
-      <div role="alert">
+      <div>
         There was an error:{' '}
         <pre style={{whiteSpace: 'normal'}}>{error.message}</pre>
       </div>
